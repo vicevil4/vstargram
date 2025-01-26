@@ -12,6 +12,12 @@ Learning by making a clone of Instagram.
 bun create next-app .
 ```
 
+## Run
+
+```shell
+bun dev
+```
+
 ## References
 
 - <https://www.youtube.com/watch?v=D6tryXaC950>
