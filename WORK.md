@@ -23,6 +23,18 @@ npx auth secret
 
 - Google Cloud Console : [vstargram](https://console.cloud.google.com/welcome/new?inv=1&invt=Abn4Rw&project=vstargram)
 
+### add Lucide icon
+
+```shell
+bun add lucide-react
+```
+
+### add react-masonry-css
+
+```shell
+bun add react-masonry-css
+```
+
 ## Run
 
 ```shell
@@ -34,3 +46,6 @@ bun dev
 - <https://www.youtube.com/watch?v=D6tryXaC950>
 - [Auth.js](https://authjs.dev/)
 - [Google Cloud Console](https://console.cloud.google.com/)
+- [lucide.dev](https://lucide.dev/)
+- [unsplash](https://unsplash.com/ko)
+- [picsum](https://picsum.photos/)
