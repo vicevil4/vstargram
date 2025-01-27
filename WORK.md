@@ -41,6 +41,19 @@ bun add react-masonry-css
 bun add @radix-ui/themes
 ```
 
+### add prisma & mongodb
+
+```shell
+bun add prisma
+npx prisma init
+bun add @prisma/client
+bun add dotenv-cli
+
+# generate prisma schema model for typescript
+npx prisma generate
+npx prisma db push
+```
+
 ## Run
 
 ```shell
@@ -56,3 +69,5 @@ bun dev
 - [unsplash](https://unsplash.com/ko)
 - [picsum](https://picsum.photos/)
 - [Radix UI](https://www.radix-ui.com/)
+- [Prisma](https://www.prisma.io/)
+- [MongoDB](https://www.mongodb.com/ko-kr)
