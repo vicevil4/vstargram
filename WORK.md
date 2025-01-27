@@ -35,6 +35,12 @@ bun add lucide-react
 bun add react-masonry-css
 ```
 
+### add radix-ui
+
+```shell
+bun add @radix-ui/themes
+```
+
 ## Run
 
 ```shell
@@ -49,3 +55,4 @@ bun dev
 - [lucide.dev](https://lucide.dev/)
 - [unsplash](https://unsplash.com/ko)
 - [picsum](https://picsum.photos/)
+- [Radix UI](https://www.radix-ui.com/)
