@@ -54,6 +54,12 @@ npx prisma generate
 npx prisma db push
 ```
 
+### add pinata
+
+```shell
+bun add pinata
+```
+
 ## Run
 
 ```shell
@@ -71,3 +77,4 @@ bun dev
 - [Radix UI](https://www.radix-ui.com/)
 - [Prisma](https://www.prisma.io/)
 - [MongoDB](https://www.mongodb.com/ko-kr)
+- [Pinata.cloud](https://pinata.cloud/)
