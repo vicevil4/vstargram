@@ -32,7 +32,7 @@ export default function RootLayout({
         <Theme>
           <div className="flex">
             <DesktopNav />
-            <div className="p-4 flex justify-around w-full">
+            <div className="p-4 pt-6 flex justify-around w-full">
               <div>
                 {children}
               </div>
