@@ -14,7 +14,7 @@ export default function SettingsForm({
     profile: Profile
 }) {
     const router = useRouter();
-    const fileInRef = useRef<HTMLInputElement>();
+    const fileInRef = useRef<HTMLInputElement>(null);
     const [file, setFile] = useState<File|null>(null);
     const [avatarUrl, setAvatarUrl] = useState(profile.avatar);
     useEffect(() => {
@@ -35,24 +35,24 @@ export default function SettingsForm({
             router.push("/profile");
             router.refresh();
         }}>
-            <input type="hidden" name="avatar" value={avatarUrl}/>
+            <input type="hidden" name="avatar" value={avatarUrl || ""}/>
             <div className="flex gap-4 items-center">
                 <div>
                     <div className="bg-gray-400 size-24 rounded-full overflow-hidden aspect-square shadow-md shadow-gray-400">
                         <img className=""
-                            src={avatarUrl} alt="" />
+                            src={avatarUrl || ""} alt="" />
                     </div>
                 </div>
                 <div>
                     <input type="file" 
                         ref={fileInRef} 
                         className="hidden"
-                        onChange={ev => setFile(ev.target.files?.[0])}
+                        onChange={ev => setFile(ev.target.files?.[0] || null)}
                         />
                     <Button 
                         type="button"
                         variant="surface"
-                        onClick={() => fileInRef.current.click()}>
+                        onClick={() => fileInRef?.current?.click()}>
                         <CloudUploadIcon />
                         change avatar
                     </Button>
