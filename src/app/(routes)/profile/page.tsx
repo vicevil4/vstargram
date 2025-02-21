@@ -3,6 +3,7 @@ import { prisma } from "@/db";
 import { CheckIcon, ChevronLeft, CogIcon } from "lucide-react";
 import Link from "next/link";
 import ProfilePosts from "@/components/ProfilePosts";
+import { Suspense } from "react";
 
 export default async function ProfilePage() {
     const session = await auth();
@@ -76,7 +77,9 @@ export default async function ProfilePage() {
                 </div>
             </section>
             <section className="mt-4">
-                <ProfilePosts email={profile.email} />
+                <Suspense fallback="Loading....">
+                    <ProfilePosts email={profile.email} />
+                </Suspense>
             </section>
         </main>
     );
