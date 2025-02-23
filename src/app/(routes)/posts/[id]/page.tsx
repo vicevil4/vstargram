@@ -1,3 +1,7 @@
+import Avartar from "@/components/Avatar";
+import CommentForm from "@/components/CommentForm";
+import { Suspense } from "react";
+
 export default async function SinglePostPage({params}:{params:{id:string}}) {
   const post = await prisma?.post.findFirstOrThrow({where:{id:params.id}});
   const authorProfile = await prisma?.profile.findFirstOrThrow({where:{email:post?.author}});
@@ -12,12 +16,7 @@ export default async function SinglePostPage({params}:{params:{id:string}}) {
         <div>
           <div className="flex gap-2">
             <div>
-              <div className="size-16 aspect-square overflow-hidden rounded-full">
-                <img 
-                  src={authorProfile?.avatar || ""} 
-                  alt={authorProfile?.username + " avatar"} />
-              </div>
-              
+              <Avartar src={authorProfile?.avatar || ''} />
             </div>
             <div>
               <h3 className="flex gap-1">
@@ -31,11 +30,13 @@ export default async function SinglePostPage({params}:{params:{id:string}}) {
                 {post?.description}
                 </p>
               </div>
-              
             </div>
           </div>
-          
-          
+          <div className="pt-8 border-t mt-8 border-t-gray-300">
+            <Suspense>
+              <CommentForm />
+            </Suspense>
+          </div>
         </div>
       </div>
     </div>
