@@ -43,3 +43,15 @@ export async function postEntry(data: FormData) {
     });
     return postDoc.id;
 }
+
+export async function postComment(data: FormData) {
+    const authorEmail = await getSessionEmailOrThrow();
+    return prisma.comment.create({
+        data: {
+            author: authorEmail,
+            postId: data.get('postId') as string,
+            text: data.get('text') as string
+        }
+    })
+}
+

@@ -1,0 +1,17 @@
+import { auth } from "@/auth";
+import { Button, TextArea } from "@radix-ui/themes";
+import Avartar from "./Avatar";
+import { postComment } from "@/actions";
+import CommentForm from "./CommentForm";
+
+export default async function SessionCommentForm({postId}:{postId:string}) {
+  const session = await auth();
+  const profile = await prisma?.profile.findFirstOrThrow({
+    where: {
+      email: session?.user?.email as string
+    }
+  })
+  return (
+    <CommentForm postId={postId} avatar={profile?.avatar || ''} />
+  );
+}
