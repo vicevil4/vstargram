@@ -8,15 +8,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function SettingsForm({
-    userEmail, profile
-}:{
-    userEmail: string,
-    profile: Profile
+    profile
+}: {
+    profile: Profile | null
 }) {
     const router = useRouter();
     const fileInRef = useRef<HTMLInputElement>(null);
-    const [file, setFile] = useState<File|null>(null);
-    const [avatarUrl, setAvatarUrl] = useState(profile.avatar);
+    const [file, setFile] = useState<File | null>(null);
+    const [avatarUrl, setAvatarUrl] = useState(profile?.avatar);
     useEffect(() => {
         if (file) {
             const data = new FormData();
@@ -31,11 +30,11 @@ export default function SettingsForm({
     }, [file]);
     return (
         <form action={async (data: FormData) => {
-            await updateProfile(data, userEmail);
+            await updateProfile(data);
             router.push("/profile");
             router.refresh();
         }}>
-            <input type="hidden" name="avatar" value={avatarUrl || ""}/>
+            <input type="hidden" name="avatar" value={avatarUrl || ""} />
             <div className="flex gap-4 items-center">
                 <div>
                     <div className="bg-gray-400 size-24 rounded-full overflow-hidden aspect-square shadow-md shadow-gray-400">
@@ -44,12 +43,12 @@ export default function SettingsForm({
                     </div>
                 </div>
                 <div>
-                    <input type="file" 
-                        ref={fileInRef} 
+                    <input type="file"
+                        ref={fileInRef}
                         className="hidden"
                         onChange={ev => setFile(ev.target.files?.[0] || null)}
-                        />
-                    <Button 
+                    />
+                    <Button
                         type="button"
                         variant="surface"
                         onClick={() => fileInRef?.current?.click()}>
@@ -61,22 +60,22 @@ export default function SettingsForm({
             <p className="mt-2 font-bold">username</p>
             <TextField.Root
                 name="username"
-                defaultValue={profile.username || ""}
+                defaultValue={profile?.username || ""}
                 placeholder="your username" />
             <p className="mt-2 font-bold">name</p>
             <TextField.Root
                 name="name"
-                defaultValue={profile.name || ""}
+                defaultValue={profile?.name || ""}
                 placeholder="simon jung" />
             <p className="mt-2 font-bold">subtitle</p>
             <TextField.Root
                 name="subtitle"
-                defaultValue={profile.subtitle || ""}
+                defaultValue={profile?.subtitle || ""}
                 placeholder="Graphic Designer" />
             <p className="mt-2 font-bold">bio</p>
-            <TextArea 
+            <TextArea
                 name="bio"
-                defaultValue={profile.bio || ""} />
+                defaultValue={profile?.bio || ""} />
             <div className="mt-4 flex justify-center">
                 <Button variant="solid">Save settings</Button>
             </div>
