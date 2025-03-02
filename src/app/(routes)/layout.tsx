@@ -36,7 +36,7 @@ export default function RootLayout({
           <div className="flex min-h-screen">
             <DesktopNav />
             <div className="pb-26 ld:pb-4 pt-4 px-4 lg:px-8 flex justify-around w-full">
-              <div>
+              <div className="w-full">
                 {children}
               </div>
             </div>
