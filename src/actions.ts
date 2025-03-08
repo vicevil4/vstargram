@@ -3,9 +3,15 @@ import { prisma } from "@/db";
 import { auth } from "./auth";
 import { uniq } from "lodash";
 
-export async function getSessionEmailOrThrow() {
+export async function getSessionEmail(): Promise<string | undefined | null> {
   const session = await auth();
-  const userEmail = session?.user?.email;
+  return session?.user?.email;
+}
+
+export async function getSessionEmailOrThrow(): Promise<
+  string | undefined | null
+> {
+  const userEmail = getSessionEmail();
   if (!userEmail) {
     throw "not logged in";
   }
@@ -117,4 +123,30 @@ export async function getSinglePostData(postId: string) {
     commentsAuthors,
     myLike,
   };
+}
+
+export async function followUser(profileIdToFollow: string) {
+  const sessionProfile = await prisma.profile.findFirstOrThrow({
+    where: { email: await getSessionEmailOrThrow() },
+  });
+  await prisma.follower.create({
+    data: {
+      followingProfileEmail: sessionProfile.email,
+      followingProfileId: sessionProfile.id,
+      followedProfileId: profileIdToFollow,
+    },
+  });
+}
+
+// FIXME: 뭔가 잘 안지워지는데, 그냥 넘어간것 같아.
+export async function unfollowUser(profileIdToFollow: string) {
+  const sessionProfile = await prisma.profile.findFirstOrThrow({
+    where: { email: await getSessionEmailOrThrow() },
+  });
+  await prisma.follower.deleteMany({
+    where: {
+      followingProfileEmail: sessionProfile.email,
+      followedProfileId: profileIdToFollow,
+    },
+  });
 }

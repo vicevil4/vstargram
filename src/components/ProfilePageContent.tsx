@@ -1,15 +1,19 @@
-import { CheckIcon, ChevronLeft, CogIcon } from "lucide-react";
+import { CheckIcon, ChevronLeft, CogIcon, UserPlusIcon } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 import ProfilePosts from "./ProfilePosts";
-import { Profile } from "@prisma/client";
+import { Follower, Profile } from "@prisma/client";
+import { Button } from "@radix-ui/themes";
+import FollowButton from "./FollowButton";
 
 export default function ProfilePageContent({
   profile,
-  isOurProfile = false
+  isOurProfile = false,
+  ourFollow = null,
 }: {
   profile: Profile;
   isOurProfile?: boolean;
+  ourFollow: Follower | null;
 }) {
   return (
     <main>
@@ -49,6 +53,13 @@ export default function ProfilePageContent({
           {profile.bio}
         </p>
       </section>
+      {!isOurProfile && (
+        <section className="flex justify-center my-3">
+
+          <FollowButton ourFollow={ourFollow} profileIdToFollow={profile.id} />
+
+        </section>
+      )}
       <section className="mt-4">
         <div className="flex justify-center gap-4 font-bold">
           <Link href="{''}">Posts</Link>
