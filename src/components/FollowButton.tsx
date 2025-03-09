@@ -2,6 +2,7 @@
 import { followUser, unfollowUser } from "@/actions";
 import { Follower } from "@prisma/client";
 import { Button } from "@radix-ui/themes";
+
 import { UserMinusIcon, UserPlusIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -33,7 +34,7 @@ export default function FollowButton({
           (isFollowed
             ? "bg-gradient-to-tr from-ig-orange to-ig-red from-50%"
             : "bg-gradient-to-tr from-ig-orange to-ig-red to-80%"
-          ) + ""
+          ) + "text-red-400" // FIXME 이 버튼만 스타일이 적용안되는데,...
         }>
         {isFollowed ? <UserMinusIcon /> : <UserPlusIcon />}
         {isFollowed ? 'Unfollow' : 'Follow'}
