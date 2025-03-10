@@ -1,14 +1,12 @@
 import { auth, signIn } from "@/auth"
-import HomeTopRow from "@/components/HomeTopRow";
+import UserHome from "@/components/UserHome";
 
 export default async function Home() {
   const session = await auth();
   return (
     <div className="">
       {session && (
-        <div>
-          <HomeTopRow />
-        </div>
+        <UserHome session={session} />
       )}
       {!session && (
         <form action={async () => {

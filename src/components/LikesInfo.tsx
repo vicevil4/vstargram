@@ -6,7 +6,13 @@ import { HeartIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function LikesInfo({ post, sessionLike }: { post: Post; sessionLike: Like | null }) {
+export default function LikesInfo({
+  post, sessionLike, showText = true
+}: {
+  post: Post;
+  sessionLike: Like | null;
+  showText?: boolean;
+}) {
   const router = useRouter();
   const [likedByMe, setLikedByMe] = useState(!!sessionLike);
   return (
@@ -26,7 +32,10 @@ export default function LikesInfo({ post, sessionLike }: { post: Post; sessionLi
         className="">
         <HeartIcon className={likedByMe ? 'text-red-500 fill-red-500' : ''} />
       </button>
-      {post?.likeCount} people like this post.
+      {showText && (
+        <p>{post?.likeCount} people like this post.</p>
+      )}
+
     </form>
   );
 }
