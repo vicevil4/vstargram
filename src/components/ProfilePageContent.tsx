@@ -5,6 +5,7 @@ import ProfilePosts from "./ProfilePosts";
 import { Follower, Profile } from "@prisma/client";
 import { Button } from "@radix-ui/themes";
 import FollowButton from "./FollowButton";
+import Preloader from "./Preloader";
 
 export default function ProfilePageContent({
   profile,
@@ -67,7 +68,7 @@ export default function ProfilePageContent({
         </div>
       </section>
       <section className="mt-4">
-        <Suspense fallback="Loading....">
+        <Suspense fallback={<Preloader />}>
           <ProfilePosts email={profile.email} />
         </Suspense>
       </section>

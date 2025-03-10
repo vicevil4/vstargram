@@ -60,6 +60,15 @@ npx prisma db push
 bun add pinata
 ```
 
+### add preloaders/spinners
+
+```shell
+# https://www.npmjs.com/package/react-preloaders
+bun add react-preloaders
+# https://www.npmjs.com/package/react-spinners
+bun add react-spinners
+```
+
 ## Run
 
 ```shell

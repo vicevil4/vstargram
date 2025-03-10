@@ -1,11 +1,10 @@
 import { Session } from "next-auth";
 import HomeTopRow from "./HomeTopRow";
-import { getSessionEmailOrThrow } from "@/actions";
 import HomePosts from "./HomePosts";
 
 export default async function UserHome({ session }: { session: Session }) {
   const follows = await prisma?.follower.findMany({
-    where: { followingProfileEmail: await getSessionEmailOrThrow() || '' }
+    where: { followingProfileEmail: session?.user?.email || '' }
   });
   const profiles = await prisma?.profile.findMany({
     where: {
