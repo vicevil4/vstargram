@@ -22,7 +22,7 @@ export default function PostsGrid({ posts }: { posts: Post[] }) {
                 columnClassName="pl-4"
             >
                 {posts.map(posts => (
-                    <Link href={`/posts/${posts.id}`} key={posts.id} className="mb-4">
+                    <Link href={`/posts/${posts.id}`} key={posts.id} className="mb-4 block">
                         <img className="rounded-lg" src={posts.image} alt="" />
                     </Link>
                 ))}

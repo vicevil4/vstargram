@@ -9,17 +9,22 @@ export default function CreatePage() {
 
   const [imageUrl, setImageUrl] = useState('');
   const [file, setFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
   const fileInRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   useEffect(() => {
     if (file) {
+      setIsUploading(true);
       const data = new FormData();
       data.set("file", file);
       fetch("/api/upload", {
         method: "POST",
         body: data,
       }).then(response => {
-        response.json().then(url => setImageUrl(url));
+        response.json().then(url => {
+          setImageUrl(url);
+          setIsUploading(false);
+        });
       });
     }
   }, [file]);
@@ -28,7 +33,7 @@ export default function CreatePage() {
       className="max-w-md mx-auto"
       action={async (data) => {
         const id = await postEntry(data);
-        router.push(`/post/${id}`);
+        router.push(`/posts/${id}`);
         router.refresh();
       }}>
       <input type='hidden' name="image" value={imageUrl} />
@@ -45,10 +50,13 @@ export default function CreatePage() {
                 className='hidden'
                 ref={fileInRef} />
               <Button
+                disabled={isUploading}
                 onClick={() => fileInRef?.current?.click()}
                 type='button' variant='surface'>
-                <CloudUploadIcon size={16} />
-                Choose image
+                {!isUploading && (
+                  <CloudUploadIcon size={16} />
+                )}
+                {isUploading ? 'Uploading....' : 'Choose image'}
               </Button>
             </div>
           </div>
