@@ -13,7 +13,7 @@ export default async function HomeTopRow({
 }) {
 
   return (
-    <div className="flex gap-3 justify-center">
+    <div className="flex gap-3 lg:justify-center max-w-full overflow-x-auto">
       <div>
         <button
           className="size-[92px] bg-gradient-to-tr from-ig-orange to-ig-red text-white rounded-full flex items-center justify-center">
