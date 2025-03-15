@@ -7,7 +7,7 @@ export default function DesktopNav() {
   return (
     <div className="hidden lg:block px-4 py-4 w-48 shadow-md shadow-gray-400">
       <div className="top-4 sticky">
-        <Image className="w-full" src={logo} alt="" />
+        <Image className="w-full dark:invert" src={logo} alt="" />
         <div className="ml-1 inline-flex flex-col gap-6 mt-8 *:flex *:items-center *:gap-2">
           <Link href="/">
             <HomeIcon />

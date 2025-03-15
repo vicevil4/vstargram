@@ -29,7 +29,7 @@ export default function BookmarkButton({
       <input type="hidden" name="postId" value={post.id} />
       <button type="submit"
         className="">
-        <BookmarkIcon className={bookmarkedByMe ? 'fill-gray-700' : ''} />
+        <BookmarkIcon className={bookmarkedByMe ? 'fill-gray-700 dark:text-white dark:fill-white' : 'dark:text-white'} />
       </button>
     </form>
   );

@@ -27,7 +27,7 @@ export default async function HomeTopRow({
           className="w-24 flex flex-col items-center justify-center">
           <div>
             <div className="inline-block p-1 rounded-full bg-gradient-to-tr from-ig-orange to-ig-red">
-              <div className="inline-block p-0.5 bg-white rounded-full">
+              <div className="inline-block p-0.5 bg-white dark:bg-black rounded-full">
                 <Avatar
                   size="6"
                   radius="full"

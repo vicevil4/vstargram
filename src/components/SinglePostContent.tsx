@@ -44,13 +44,13 @@ export default function SinglePostContent({
               </div>
             ))}
           </div>
-          <div className="flex items-center gap-2 text-gray-700 justify-between py-4 mt-4 border-t border-t-gray-300">
+          <div className="flex items-center gap-2 text-gray-700 dark:text-gray-400 justify-between py-4 mt-4 border-t border-gray-300 dark:border-gray-700">
             <LikesInfo sessionLike={myLike} post={post} />
             <div className="flex items-center">
               <BookmarkButton sessionBookmark={myBookmark} post={post} />
             </div>
           </div>
-          <div className="pt-8 border-t border-t-gray-300">
+          <div className="pt-8 border-t border-gray-300 dark:border-gray-700">
             <Suspense fallback={<Preloader />}>
               <SessionCommentForm postId={post.id} />
             </Suspense>

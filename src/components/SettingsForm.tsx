@@ -2,7 +2,7 @@
 
 import { updateProfile } from "@/actions";
 import { Profile } from "@prisma/client";
-import { Button, TextArea, TextField } from "@radix-ui/themes";
+import { Button, Switch, TextArea, TextField } from "@radix-ui/themes";
 import { CloudUploadIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -28,6 +28,7 @@ export default function SettingsForm({
             });
         }
     }, [file]);
+
     return (
         <form action={async (data: FormData) => {
             await updateProfile(data);
@@ -76,6 +77,20 @@ export default function SettingsForm({
             <TextArea
                 name="bio"
                 defaultValue={profile?.bio || ""} />
+            <label className="flex gap-2 items-center mt-2">
+                <span>Dark mode</span>
+                <Switch
+                    defaultChecked={localStorage.getItem('theme') == 'dark'}
+                    onCheckedChange={(isDark) => {
+                        const html = document.querySelector('html');
+                        const theme = isDark ? 'dark' : 'light';
+                        if (html) {
+                            html.dataset.theme = theme;
+                        }
+                        localStorage.setItem('theme', theme);
+                        window.location.reload();
+                    }} />
+            </label>
             <div className="mt-4 flex justify-center">
                 <Button variant="solid">Save settings</Button>
             </div>

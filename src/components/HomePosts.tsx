@@ -52,7 +52,7 @@ export default async function HomePosts({
                   size="2"
                   src={profile?.avatar || ''} />
                 <Link
-                  className="font-bold text-gray-700"
+                  className="font-bold text-gray-700 dark:text-gray-300"
                   href={`/users/${profile?.username}`}>
                   {profile?.name}
                 </Link>
@@ -68,7 +68,7 @@ export default async function HomePosts({
                 />
               </div>
             </div>
-            <p className="mt-2 text-slate-600">
+            <p className="mt-2 text-slate-600 dark:text-gray-400">
               {post.description}
             </p>
           </div>
