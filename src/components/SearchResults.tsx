@@ -1,6 +1,7 @@
 import { Avatar } from "@radix-ui/themes";
 import Link from "next/link";
 import PostsGrid from "./PostsGrid";
+import { prisma } from "@/db";
 
 
 export default async function SearchResults({

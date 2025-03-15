@@ -2,8 +2,8 @@ import { getSessionEmailOrThrow } from "@/actions";
 import { Follower, Profile } from "@prisma/client";
 import { Avatar } from "@radix-ui/themes";
 import LikesInfo from "./LikesInfo";
-import { BookmarkIcon } from "lucide-react";
 import Link from "next/link";
+import BookmarkButton from "./BookmarkButton";
 
 export default async function HomePosts({
   follows,
@@ -26,7 +26,13 @@ export default async function HomePosts({
       author: await getSessionEmailOrThrow(),
       postId: { in: posts?.map(p => p.id) },
     }
-  })
+  });
+  const bookmarks = await prisma?.bookmark.findMany({
+    where: {
+      author: await getSessionEmailOrThrow(),
+      postId: { in: posts?.map(p => p.id) },
+    }
+  });
   return (
     <div className="max-w-md mx-auto flex flex-col gap-12">
       {posts?.map(post => {
@@ -56,9 +62,10 @@ export default async function HomePosts({
                   post={post}
                   sessionLike={likes?.find(like => like.postId === post.id) || null}
                   showText={false} />
-                <button>
-                  <BookmarkIcon />
-                </button>
+                <BookmarkButton
+                  post={post}
+                  sessionBookmark={bookmarks?.find(bookmarks => bookmarks.postId === post.id) || null}
+                />
               </div>
             </div>
             <p className="mt-2 text-slate-600">

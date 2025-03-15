@@ -10,6 +10,8 @@ export default async function SinglePostPage({ params }: { params: { id: string 
       authorProfile={data.authorProfile}
       comments={data.comments}
       commentsAuthors={data.commentsAuthors}
-      myLike={data.myLike} />
+      myLike={data.myLike}
+      myBookmark={data.myBookmark}
+    />
   )
 }

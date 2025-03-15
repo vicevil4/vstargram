@@ -1,10 +1,10 @@
 import Comment from "@/components/Comment";
 import SessionCommentForm from "@/components/SessionCommentForm";
 import { Suspense } from "react";
-import { BookmarkIcon, HeartIcon } from "lucide-react";
 import LikesInfo from "@/components/LikesInfo";
-import { Comment as CommentModel, Post, Profile, Like } from "@prisma/client";
+import { Comment as CommentModel, Post, Profile, Like, Bookmark } from "@prisma/client";
 import Preloader from "./Preloader";
+import BookmarkButton from "./BookmarkButton";
 
 export default function SinglePostContent({
   post,
@@ -12,12 +12,14 @@ export default function SinglePostContent({
   comments,
   commentsAuthors,
   myLike,
+  myBookmark
 }: {
   post: Post;
   authorProfile: Profile;
   comments: CommentModel[];
   commentsAuthors: Profile[];
   myLike: Like | null;
+  myBookmark: Bookmark | null;
 }) {
 
   return (
@@ -45,9 +47,7 @@ export default function SinglePostContent({
           <div className="flex items-center gap-2 text-gray-700 justify-between py-4 mt-4 border-t border-t-gray-300">
             <LikesInfo sessionLike={myLike} post={post} />
             <div className="flex items-center">
-              <button>
-                <BookmarkIcon />
-              </button>
+              <BookmarkButton sessionBookmark={myBookmark} post={post} />
             </div>
           </div>
           <div className="pt-8 border-t border-t-gray-300">

@@ -10,6 +10,7 @@ export default async function ModalPostContent({ postId }: { postId: string }) {
       authorProfile={data.authorProfile}
       comments={data.comments}
       commentsAuthors={data.commentsAuthors}
-      myLike={data.myLike} />
+      myLike={data.myLike}
+      myBookmark={data.myBookmark} />
   );
 }

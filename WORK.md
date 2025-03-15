@@ -69,6 +69,12 @@ bun add react-preloaders
 bun add react-spinners
 ```
 
+### add types
+
+```shell
+bun add @types/lodash
+```
+
 ## Run
 
 ```shell
